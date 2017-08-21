@@ -11,6 +11,7 @@ defmodule Testing.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    resources "/bots", Testing.BotController
   end
 
   scope "/", Testing do
@@ -21,7 +22,8 @@ defmodule Testing.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", Testing do
-  #   pipe_through :api
-  # end
+  scope "/api", Testing do
+    pipe_through :api
+    resources "/bots", BotController
+  end
 end
